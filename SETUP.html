@@ -1,0 +1,345 @@
+<title>Best Braai Agent Setup</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&family=Barlow:wght@400;500;600;700&family=JetBrains+Mono:wght@500&display=swap">
+<style>
+/* Layout: one narrow column of numbered setup steps, each a checklist card with link buttons. */
+:root {
+  --bg: #f6f2ee; --surface: #fffdfb; --fg: #231c17; --muted: #6e6158; --line: #e3d8cf;
+  --ember: #d4560a; --ember-ink: #ffffff; --gold: #9a6a00; --done: #2f7a3f; --code-bg: #f0e8e1;
+  --display: "Anton", Impact, "Arial Narrow", sans-serif;
+  --body: "Barlow", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --mono: "JetBrains Mono", ui-monospace, Menlo, Consolas, monospace;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --bg: #161210; --surface: #201a17; --fg: #f3ebe4; --muted: #b3a397; --line: #3a302a;
+  --ember: #f07a22; --ember-ink: #1a110b; --gold: #fdc33f; --done: #6fcf83; --code-bg: #2a221e; color-scheme: dark } }
+:root[data-theme="dark"] {
+  --bg: #161210; --surface: #201a17; --fg: #f3ebe4; --muted: #b3a397; --line: #3a302a;
+  --ember: #f07a22; --ember-ink: #1a110b; --gold: #fdc33f; --done: #6fcf83; --code-bg: #2a221e; color-scheme: dark }
+
+body { background: var(--bg); color: var(--fg); font: 17px/1.55 var(--body);
+  padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+.wrap { max-width: 760px; margin: 0 auto; padding-block: 40px 80px; display: grid; gap: 22px; }
+header { display: grid; gap: 10px; }
+.eyebrow { font-weight: 700; letter-spacing: .14em; text-transform: uppercase; font-size: 13px; color: var(--ember); }
+h1 { font: 400 clamp(38px, 8vw, 60px)/1 var(--display); text-transform: uppercase; margin: 0; text-wrap: balance; }
+.lede { color: var(--muted); margin: 0; max-width: 62ch; }
+.progress { display: flex; align-items: center; gap: 12px; font-weight: 600; font-variant-numeric: tabular-nums; }
+.bar { flex: 1; height: 8px; background: var(--line); border-radius: 4px; overflow: hidden; }
+.bar i { display: block; height: 100%; width: 0; background: var(--ember); transition: width .3s; }
+
+.user { display: grid; gap: 6px; background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 16px 18px; }
+.user label { font-weight: 700; }
+.user input { font: 500 17px var(--mono); padding: 10px 12px; border: 1px solid var(--line); border-radius: 6px; background: var(--bg); color: var(--fg); min-width: 0; }
+.user small { color: var(--muted); }
+
+.step { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 18px 20px; display: grid; gap: 12px; min-width: 0; }
+.step.is-done { border-color: var(--done); }
+.step-head { display: flex; gap: 14px; align-items: baseline; }
+.num { font: 400 30px/1 var(--display); color: var(--ember); min-width: 1.4em; font-variant-numeric: tabular-nums; }
+.step.is-done .num { color: var(--done); }
+.step h2 { font-size: 21px; line-height: 1.25; margin: 0; flex: 1; text-wrap: balance; }
+.time { font-size: 13px; color: var(--muted); white-space: nowrap; }
+.step ol, .step ul { margin: 0; padding-left: 1.3em; display: grid; gap: 6px; }
+.step p { margin: 0; }
+.actions { display: flex; flex-wrap: wrap; gap: 10px; }
+a.btn { display: inline-flex; align-items: center; gap: 8px; background: var(--ember); color: var(--ember-ink); text-decoration: none;
+  font-weight: 700; padding: 10px 16px; border-radius: 6px; }
+a.btn.alt { background: transparent; color: var(--fg); border: 1px solid var(--line); }
+a.btn:hover { filter: brightness(1.08); }
+a.btn:focus-visible, button:focus-visible, input:focus-visible { outline: 3px solid var(--gold); outline-offset: 2px; }
+.copy { display: flex; align-items: center; gap: 8px; background: var(--code-bg); border-radius: 6px; padding: 6px 6px 6px 12px; min-width: 0; }
+.copy code { font: 500 14.5px var(--mono); overflow-x: auto; white-space: nowrap; flex: 1; min-width: 0; }
+button { font: 600 14px var(--body); cursor: pointer; border: 1px solid var(--line); background: var(--surface); color: var(--fg); border-radius: 5px; padding: 6px 12px; }
+.check { display: flex; align-items: center; gap: 10px; font-weight: 600; cursor: pointer; width: fit-content; }
+.check input { width: 20px; height: 20px; accent-color: var(--done); }
+.note { border-left: 4px solid var(--gold); padding: 8px 12px; background: var(--code-bg); border-radius: 0 6px 6px 0; font-size: 15.5px; }
+table { border-collapse: collapse; width: 100%; font-size: 15.5px; }
+td, th { text-align: left; padding: 8px 6px; border-bottom: 1px solid var(--line); vertical-align: top; }
+th { font-size: 13px; text-transform: uppercase; letter-spacing: .08em; color: var(--muted); }
+.tbl { overflow-x: auto; }
+pre.wf { max-height: 220px; overflow: auto; background: var(--code-bg); padding: 12px; border-radius: 6px; font: 500 12.5px/1.5 var(--mono); margin: 0; }
+footer { color: var(--muted); font-size: 15px; }
+@media (prefers-reduced-motion: reduce) { .bar i { transition: none; } }
+</style>
+
+<div class="wrap">
+<header>
+  <div class="eyebrow">Best Braai · Namibian Hardwood</div>
+  <h1>Set up your auto-posting agent</h1>
+  <p class="lede">Follow these steps once, about 30 to 40 minutes in total. Each button opens the right page in a new tab. Tick each step when it's done; your ticks are saved in this browser.</p>
+  <div class="progress"><span id="count">0 of 10 done</span><div class="bar"><i id="bar"></i></div></div>
+</header>
+
+<div class="user">
+  <label for="gh">Your GitHub username</label>
+  <input id="gh" placeholder="e.g. bestbraai-sa" autocomplete="off" spellcheck="false">
+  <small>Type it after step 1. The links in steps 2, 8, 9 and 10 then go straight to your own repository.</small>
+</div>
+
+<section class="step" data-step="1">
+  <div class="step-head"><span class="num">1</span><h2>Create a GitHub account and an empty repository</h2><span class="time">5 min</span></div>
+  <ol>
+    <li>Sign up for a free account (skip if you have one).</li>
+    <li>Create a new repository named <b>best-braai-agent</b>.</li>
+    <li>Choose <b>Public</b>. Instagram downloads the images from here, so it can't be private.</li>
+    <li>Leave "Add a README" unticked, then click <b>Create repository</b>.</li>
+  </ol>
+  <div class="actions">
+    <a class="btn" href="https://github.com/signup" target="_blank" rel="noopener">Sign up on GitHub ↗</a>
+    <a class="btn alt" href="https://github.com/new" target="_blank" rel="noopener">New repository ↗</a>
+  </div>
+  <div class="copy"><code>best-braai-agent</code><button data-copy="best-braai-agent">Copy name</button></div>
+  <label class="check"><input type="checkbox" id="done-1">Done</label>
+</section>
+
+<section class="step" data-step="2">
+  <div class="step-head"><span class="num">2</span><h2>Put the agent's code in the repository</h2><span class="time">5 min</span></div>
+  <p><b>Easiest:</b> send Claude your repository name (for example <code>yourname/best-braai-agent</code>) in the chat and Claude uploads everything.</p>
+  <p><b>Or do it yourself:</b></p>
+  <ol>
+    <li>Unzip <b>best-braai-agent.zip</b> on your computer.</li>
+    <li>Open the upload page, drag in everything <i>inside</i> the unzipped folder, and click <b>Commit changes</b>.</li>
+    <li>The hidden <code>.github</code> folder often doesn't upload. Open "Create workflow file", paste the name below as the file name, paste the workflow text as the content, and click <b>Commit changes</b>.</li>
+  </ol>
+  <div class="actions">
+    <a class="btn repo-link" data-path="/upload/main" href="https://github.com/new" target="_blank" rel="noopener">Upload files ↗</a>
+    <a class="btn alt repo-link" data-path="/new/main" href="https://github.com/new" target="_blank" rel="noopener">Create workflow file ↗</a>
+  </div>
+  <div class="copy"><code>.github/workflows/post.yml</code><button data-copy=".github/workflows/post.yml">Copy file name</button></div>
+  <div class="copy"><code>Workflow text (shown below)</code><button data-copy-el="wf">Copy workflow text</button></div>
+  <pre class="wf" id="wf">name: Braai social posts
+
+on:
+  schedule:
+    # Every day at 17:17 South African time (15:17 UTC). The agent itself
+    # decides whether today is a posting day (every 2nd day, see config.yaml).
+    - cron: &quot;17 15 * * *&quot;
+  workflow_dispatch:
+    inputs:
+      date:
+        description: &quot;Post for this date (YYYY-MM-DD). Empty = today&quot;
+        required: false
+      force:
+        description: &quot;Post even if it&#x27;s not a posting day&quot;
+        type: boolean
+        default: false
+      dry_run:
+        description: &quot;Create the post but don&#x27;t publish it&quot;
+        type: boolean
+        default: false
+
+permissions:
+  contents: write
+
+concurrency: braai-posts
+
+jobs:
+  post:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: &quot;3.12&quot;
+
+      - name: Install tools
+        run: |
+          sudo apt-get update -qq &amp;&amp; sudo apt-get install -y -qq ffmpeg fonts-dejavu-core
+          pip install -q -r requirements.txt
+          curl -sSfL -o fonts/Anton-Regular.ttf https://github.com/google/fonts/raw/main/ofl/anton/Anton-Regular.ttf || true
+
+      - name: Create today&#x27;s post
+        id: gen
+        env:
+          PEXELS_API_KEY: ${{ secrets.PEXELS_API_KEY }}
+          PIXABAY_API_KEY: ${{ secrets.PIXABAY_API_KEY }}
+        run: |
+          ARGS=&quot;&quot;
+          [ -n &quot;${{ inputs.date }}&quot; ] &amp;&amp; ARGS=&quot;$ARGS --date ${{ inputs.date }}&quot;
+          [ &quot;${{ inputs.force }}&quot; = &quot;true&quot; ] &amp;&amp; ARGS=&quot;$ARGS --force&quot;
+          python -m braai_agent generate $ARGS
+
+      - name: Save images to the repo (Instagram needs a public link)
+        if: steps.gen.outputs.should_post == &#x27;true&#x27;
+        run: |
+          git config user.name &quot;braai-bot&quot;
+          git config user.email &quot;braai-bot@users.noreply.github.com&quot;
+          git add posts
+          git commit -m &quot;Post for ${{ steps.gen.outputs.post_dir }}&quot; &amp;&amp; git push
+
+      - name: Keep a copy of the reel for 30 days
+        if: steps.gen.outputs.should_post == &#x27;true&#x27;
+        uses: actions/upload-artifact@v4
+        with:
+          name: post-${{ github.run_id }}
+          path: ${{ steps.gen.outputs.post_dir }}
+          retention-days: 30
+
+      - name: Publish to Instagram &amp; Facebook
+        if: steps.gen.outputs.should_post == &#x27;true&#x27;
+        env:
+          META_ACCESS_TOKEN: ${{ secrets.META_ACCESS_TOKEN }}
+          FB_PAGE_ID: ${{ secrets.FB_PAGE_ID }}
+          IG_USER_ID: ${{ secrets.IG_USER_ID }}
+        run: |
+          sleep 20  # give GitHub a moment to serve the new images
+          if [ &quot;${{ inputs.dry_run }}&quot; = &quot;true&quot; ] || [ -z &quot;$META_ACCESS_TOKEN&quot; ]; then
+            echo &quot;Dry run (no META_ACCESS_TOKEN secret yet, or dry_run chosen)&quot;
+            python -m braai_agent publish &quot;${{ steps.gen.outputs.post_dir }}&quot; --dry-run
+          else
+            python -m braai_agent publish &quot;${{ steps.gen.outputs.post_dir }}&quot;
+            git add posts &amp;&amp; git commit -m &quot;Published ${{ steps.gen.outputs.post_dir }}&quot; &amp;&amp; git push || true
+          fi
+</pre>
+  <label class="check"><input type="checkbox" id="done-2">Done</label>
+</section>
+
+<section class="step" data-step="3">
+  <div class="step-head"><span class="num">3</span><h2>Get a free Pexels photo key</h2><span class="time">3 min</span></div>
+  <ol>
+    <li>Sign up or log in at Pexels.</li>
+    <li>Open the API page and click <b>Your API Key</b>. Fill in the short form (use: "Social media posts for my braai business").</li>
+    <li>Copy the key and keep it for step 8.</li>
+  </ol>
+  <div class="actions"><a class="btn" href="https://www.pexels.com/api/" target="_blank" rel="noopener">Open Pexels API ↗</a></div>
+  <label class="check"><input type="checkbox" id="done-3">Done</label>
+</section>
+
+<section class="step" data-step="4">
+  <div class="step-head"><span class="num">4</span><h2>Make sure Instagram is a business account linked to your Page</h2><span class="time">3 min</span></div>
+  <ol>
+    <li>In the Instagram app: <b>Settings → Account type and tools</b>. It should say Business or Creator. If not, tap <b>Switch to professional account</b>.</li>
+    <li>In Meta Business settings, open <b>Accounts → Instagram accounts</b>. <b>@best_braai</b> should be listed and connected to the Best Braai Page. If not, click <b>Add</b> and log in to Instagram.</li>
+  </ol>
+  <div class="actions"><a class="btn" href="https://business.facebook.com/settings/instagram-account-v2s?business_id=531195883973157" target="_blank" rel="noopener">Open Instagram accounts ↗</a></div>
+  <label class="check"><input type="checkbox" id="done-4">Done</label>
+</section>
+
+<section class="step" data-step="5">
+  <div class="step-head"><span class="num">5</span><h2>Create a Meta app</h2><span class="time">5 min</span></div>
+  <ol>
+    <li>Click <b>Create app</b>. Name it <b>Best Braai Poster</b> and use your email.</li>
+    <li>For use cases, pick <b>Manage everything on your Page</b> and <b>Manage messaging &amp; content on Instagram</b>. If those aren't offered, choose <b>Other → Business</b>.</li>
+    <li>When asked for a business portfolio, choose <b>Best Braai</b>, then click <b>Create app</b>.</li>
+  </ol>
+  <div class="actions"><a class="btn" href="https://developers.facebook.com/apps/creation/" target="_blank" rel="noopener">Create Meta app ↗</a></div>
+  <label class="check"><input type="checkbox" id="done-5">Done</label>
+</section>
+
+<section class="step" data-step="6">
+  <div class="step-head"><span class="num">6</span><h2>Create a posting key that never expires</h2><span class="time">7 min</span></div>
+  <ol>
+    <li>Open <b>System users</b> and click <b>Add</b>. Name: <b>braai-bot</b>, role: <b>Admin</b>.</li>
+    <li>Click <b>Assign assets</b>. Give it <b>full control</b> of the Best Braai <b>Page</b>, the <b>Instagram account</b> and the <b>Best Braai Poster</b> app.</li>
+    <li>Click <b>Generate new token</b>, choose the app, set expiry to <b>Never</b>, and tick the permissions below.</li>
+    <li>Copy the token and keep it for step 8. <b>Don't paste it in a chat or email.</b> Anyone with it can post on your page.</li>
+  </ol>
+  <div class="actions"><a class="btn" href="https://business.facebook.com/settings/system-users?business_id=531195883973157" target="_blank" rel="noopener">Open System users ↗</a></div>
+  <div class="copy"><code>pages_show_list, pages_read_engagement, pages_manage_posts, instagram_basic, instagram_content_publish, business_management</code><button data-copy="pages_show_list, pages_read_engagement, pages_manage_posts, instagram_basic, instagram_content_publish, business_management">Copy</button></div>
+  <label class="check"><input type="checkbox" id="done-6">Done</label>
+</section>
+
+<section class="step" data-step="7">
+  <div class="step-head"><span class="num">7</span><h2>Find your Instagram ID</h2><span class="time">2 min</span></div>
+  <ol>
+    <li>Open Graph API Explorer and paste your token from step 6 into the <b>Access Token</b> box.</li>
+    <li>Replace the text in the query box with the line below and click <b>Submit</b>.</li>
+    <li>Copy the number after <code>"id"</code> inside <code>instagram_business_account</code>. Keep it for step 8.</li>
+  </ol>
+  <div class="actions"><a class="btn" href="https://developers.facebook.com/tools/explorer/" target="_blank" rel="noopener">Open Graph API Explorer ↗</a></div>
+  <div class="copy"><code>1019998334781471?fields=instagram_business_account</code><button data-copy="1019998334781471?fields=instagram_business_account">Copy</button></div>
+  <label class="check"><input type="checkbox" id="done-7">Done</label>
+</section>
+
+<section class="step" data-step="8">
+  <div class="step-head"><span class="num">8</span><h2>Add the keys to GitHub as secrets</h2><span class="time">3 min</span></div>
+  <p>Open the secrets page and click <b>New repository secret</b> three times, once for each row:</p>
+  <div class="tbl"><table>
+    <tr><th>Name</th><th>Value</th><th></th></tr>
+    <tr><td><code>META_ACCESS_TOKEN</code></td><td>token from step 6</td><td><button data-copy="META_ACCESS_TOKEN">Copy name</button></td></tr>
+    <tr><td><code>IG_USER_ID</code></td><td>number from step 7</td><td><button data-copy="IG_USER_ID">Copy name</button></td></tr>
+    <tr><td><code>PEXELS_API_KEY</code></td><td>key from step 3</td><td><button data-copy="PEXELS_API_KEY">Copy name</button></td></tr>
+  </table></div>
+  <p class="note">Your Facebook Page ID (1019998334781471) is already built into the agent, so it doesn't need a secret.</p>
+  <div class="actions"><a class="btn repo-link" data-path="/settings/secrets/actions/new" href="https://github.com/new" target="_blank" rel="noopener">Open GitHub secrets ↗</a></div>
+  <label class="check"><input type="checkbox" id="done-8">Done</label>
+</section>
+
+<section class="step" data-step="9">
+  <div class="step-head"><span class="num">9</span><h2>Test run (nothing gets posted)</h2><span class="time">5 min</span></div>
+  <ol>
+    <li>Open the workflow page. If GitHub asks, click <b>I understand my workflows, go ahead and enable them</b>.</li>
+    <li>Click <b>Run workflow</b>, tick <b>force</b> and <b>dry_run</b>, then click the green <b>Run workflow</b>.</li>
+    <li>When it finishes (about 2 minutes), open the run and download the file under <b>Artifacts</b> to see the feed image, story and reel.</li>
+  </ol>
+  <div class="actions"><a class="btn repo-link" data-path="/actions/workflows/post.yml" href="https://github.com/new" target="_blank" rel="noopener">Open workflow ↗</a></div>
+  <label class="check"><input type="checkbox" id="done-9">Done</label>
+</section>
+
+<section class="step" data-step="10">
+  <div class="step-head"><span class="num">10</span><h2>Go live</h2><span class="time">2 min</span></div>
+  <ol>
+    <li>Click <b>Run workflow</b> again, tick only <b>force</b>, and run it. This time it really posts.</li>
+    <li>Check @best_braai and your Facebook Page for the new post, story and reel.</li>
+    <li>From now on it runs by itself every day at 17:17 and posts every second day. You don't need to do anything else.</li>
+  </ol>
+  <div class="actions">
+    <a class="btn repo-link" data-path="/actions/workflows/post.yml" href="https://github.com/new" target="_blank" rel="noopener">Open workflow ↗</a>
+    <a class="btn alt" href="https://www.instagram.com/best_braai/" target="_blank" rel="noopener">Open @best_braai ↗</a>
+  </div>
+  <p class="note">If a run shows a red ✗, open it, copy the error lines and send them to Claude.</p>
+  <label class="check"><input type="checkbox" id="done-10">Done</label>
+</section>
+
+<footer>Stuck on a step? Tell Claude the step number and what you see on screen.</footer>
+</div>
+
+<script>
+(function () {
+  const store = {
+    get(k) { try { return localStorage.getItem(k); } catch (e) { return null; } },
+    set(k, v) { try { localStorage.setItem(k, v); } catch (e) {} }
+  };
+  const gh = document.getElementById('gh');
+  gh.value = store.get('bb-gh') || '';
+  function updateLinks() {
+    const u = gh.value.trim().replace(/^@/, '').replace(/[^A-Za-z0-9-]/g, '');
+    document.querySelectorAll('.repo-link').forEach(a => {
+      a.href = u ? 'https://github.com/' + u + '/best-braai-agent' + a.dataset.path : 'https://github.com/new';
+    });
+  }
+  gh.addEventListener('input', () => { store.set('bb-gh', gh.value); updateLinks(); });
+  updateLinks();
+
+  const boxes = [...document.querySelectorAll('.check input')];
+  function updateProgress() {
+    const n = boxes.filter(b => b.checked).length;
+    document.getElementById('count').textContent = n + ' of ' + boxes.length + ' done';
+    document.getElementById('bar').style.width = (100 * n / boxes.length) + '%';
+    boxes.forEach(b => b.closest('.step').classList.toggle('is-done', b.checked));
+  }
+  boxes.forEach(b => {
+    b.checked = store.get('bb-' + b.id) === '1';
+    b.addEventListener('change', () => { store.set('bb-' + b.id, b.checked ? '1' : '0'); updateProgress(); });
+  });
+  updateProgress();
+
+  document.querySelectorAll('button[data-copy], button[data-copy-el]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const text = btn.dataset.copy || document.getElementById(btn.dataset.copyEl).textContent;
+      const label = btn.textContent;
+      const ok = () => { btn.textContent = 'Copied'; setTimeout(() => btn.textContent = label, 1500); };
+      const fallback = () => {
+        const el = btn.dataset.copyEl ? document.getElementById(btn.dataset.copyEl) : btn.previousElementSibling;
+        const r = document.createRange(); r.selectNodeContents(el);
+        const s = getSelection(); s.removeAllRanges(); s.addRange(r);
+        btn.textContent = 'Press Ctrl+C';
+      };
+      if (navigator.clipboard) navigator.clipboard.writeText(text).then(ok, fallback); else fallback();
+    });
+  });
+})();
+</script>
