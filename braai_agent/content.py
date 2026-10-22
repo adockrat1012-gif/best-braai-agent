@@ -268,13 +268,13 @@ SEASON = {
 
 FUEL_TIPS = [
     dict(headlines=["Charcoal & Briquettes", "Everything for your fire"],
-         subs=["Charcoal & briquettes at Best Braai"],
+         subs=["Charcoal & Briquettes at Best Braai"],
          captions=["Charcoal or briquettes: whatever your fire needs, we've got you covered 🔥 {cta}"],
          queries=["charcoal grill", "glowing charcoal", "charcoal briquettes grill"],
          tips=["Charcoal or briquettes. Pick your fire."],
          tags=["#Charcoal", "#Briquettes"]),
     dict(headlines=["Ready for a big braai?", "Stock up. Light up."],
-         subs=["Charcoal & briquettes"],
+         subs=["Charcoal & Briquettes"],
          captions=["Big braai coming up? 🔥 Stock up on charcoal and briquettes so the fire "
                    "keeps going from the first chop to the last braaibroodjie. {cta}"],
          queries=["steak charcoal grill", "barbecue grill meat charcoal", "charcoal embers"],

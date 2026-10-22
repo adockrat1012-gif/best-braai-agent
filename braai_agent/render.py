@@ -117,6 +117,7 @@ def compose(photo, size, headline, sub, brand, handle, top_ratio=0.12, safe_bott
     y = int(h * top_ratio)
 
     if big_logo and _LOGO.exists():
+        img = Image.blend(img, Image.new("RGB", size, CHARCOAL), 0.6)  # calm photo so the logo pops
         logo = _logo(int(w * 0.62 * 1059 / 1173))
         ly = int(h * 0.42) - logo.height // 2
         img = _paste_logo(img, logo, (w - logo.width) // 2, ly)
@@ -128,7 +129,7 @@ def compose(photo, size, headline, sub, brand, handle, top_ratio=0.12, safe_bott
             for line in _wrap(d, text, f, max_w):
                 lw = d.textlength(line, font=f)
                 d.text(((w - lw) / 2 + 2, y + 2), line, font=f, fill=(0, 0, 0))
-                d.text(((w - lw) / 2, y), line, font=f, fill=col)
+                d.text(((w - lw) / 2, y), line, font=f, fill=col, stroke_width=3, stroke_fill=(0, 0, 0))
                 y += int(f.size * 1.35)
             y += 20
         d.rectangle([0, h - 14, w, h], fill=EMBER)
@@ -151,7 +152,7 @@ def compose(photo, size, headline, sub, brand, handle, top_ratio=0.12, safe_bott
             img.paste(glow.filter(ImageFilter.GaussianBlur(10)), (0, 0), glow.filter(ImageFilter.GaussianBlur(10)))
             d = ImageDraw.Draw(img)
             d.text((margin + 3, y + 4), line, font=hf, fill=(0, 0, 0))
-            d.text((margin, y), line, font=hf, fill=WHITE)
+            d.text((margin, y), line, font=hf, fill=WHITE, stroke_width=2, stroke_fill=(0, 0, 0))
             y += int(hf.size * 1.12)
 
     if sub:
@@ -160,8 +161,8 @@ def compose(photo, size, headline, sub, brand, handle, top_ratio=0.12, safe_bott
         y += 36
         sf, slines = _fit(d, sub, _BODY_FONTS, max_w, 3, 50, 32)
         for line in slines:
-            d.text((margin + 2, y + 2), line, font=sf, fill=(0, 0, 0))
-            d.text((margin, y), line, font=sf, fill=GOLD)
+            d.text((margin + 2, y + 3), line, font=sf, fill=(0, 0, 0))
+            d.text((margin, y), line, font=sf, fill=GOLD, stroke_width=3, stroke_fill=(0, 0, 0))
             y += int(sf.size * 1.3)
 
     # Logo (or brand name) at the bottom
