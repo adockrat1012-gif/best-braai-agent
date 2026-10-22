@@ -194,6 +194,7 @@ jobs:
             git add posts &amp;&amp; git commit -m &quot;Published ${{ steps.gen.outputs.post_dir }}&quot; &amp;&amp; git push || true
           fi
 </pre>
+  <p class="note">Already done: Claude uploaded the code to github.com/adockrat1012-gif/best-braai-agent.</p>
   <label class="check"><input type="checkbox" id="done-2">Done</label>
 </section>
 
@@ -304,7 +305,7 @@ jobs:
     set(k, v) { try { localStorage.setItem(k, v); } catch (e) {} }
   };
   const gh = document.getElementById('gh');
-  gh.value = store.get('bb-gh') || '';
+  gh.value = store.get('bb-gh') || 'adockrat1012-gif';
   function updateLinks() {
     const u = gh.value.trim().replace(/^@/, '').replace(/[^A-Za-z0-9-]/g, '');
     document.querySelectorAll('.repo-link').forEach(a => {
