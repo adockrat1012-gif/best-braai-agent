@@ -2,12 +2,12 @@
 brand:
   name: "Best Braai"
   handle: "@best_braai"                    # shown on every image
-  cta: "Get premium Namibian hardwood & charcoal at Best Braai 🔥"
-  story_cta: "Premium Namibian hardwood for your braai"
-  hashtags: ["#BestBraai", "#NamibianHardwood"]
+  cta: "Charcoal, briquettes & hardwood at Best Braai 🔥"
+  story_cta: "Charcoal, briquettes & hardwood"
+  hashtags: ["#BestBraai", "#Charcoal", "#Briquettes", "#Hardwood"]
 
 schedule:
-  start_date: 2026-10-23    # first posting day; then every N days after that
+  start_date: 2026-10-22    # first posting day; then every N days after that
   every_n_days: 2
 
 meta:

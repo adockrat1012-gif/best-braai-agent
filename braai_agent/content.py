@@ -267,21 +267,19 @@ SEASON = {
 }
 
 FUEL_TIPS = [
-    dict(headlines=["Namibian hardwood. Pure heat.", "Born in the desert, made for braai"],
-         subs=["Best Braai Namibian hardwood charcoal"],
-         captions=["Why Namibian hardwood? 🇳🇦🔥 Sekelbos, kameeldoring and mopani grow slowly in the dry "
-                   "desert, so the wood is dense and dry. That means hotter coals that burn longer, "
-                   "with very little smoke. {cta}"],
-         queries=["lump charcoal", "glowing charcoal grill", "charcoal embers"],
-         tips=["Dense desert hardwood = hotter coals, longer burn, less smoke."],
-         tags=["#NamibianHardwood", "#LumpCharcoal", "#Charcoal"]),
-    dict(headlines=["One bag. One epic braai.", "15kg of pure braai power"],
-         subs=["Best Braai 15kg Namibian hardwood charcoal"],
-         captions=["Big braai this weekend? 🔥 One 15kg bag of Best Braai Namibian hardwood charcoal gives "
-                   "you steady, strong heat from the first chop to the last braaibroodjie. {cta}"],
-         queries=["steak charcoal grill", "lump charcoal", "barbecue grill meat charcoal"],
-         tips=["Lump hardwood charcoal lights faster than briquettes and burns clean."],
-         tags=["#BestBraai", "#NamibianHardwood", "#Charcoal"]),
+    dict(headlines=["Charcoal. Briquettes. Hardwood.", "Everything for your fire"],
+         subs=["Charcoal, briquettes & hardwood at Best Braai"],
+         captions=["Charcoal, briquettes or hardwood: whatever your fire needs, we've got you covered 🔥 {cta}"],
+         queries=["charcoal grill", "glowing charcoal", "burning wood fire"],
+         tips=["Charcoal, briquettes or hardwood. Pick your fire."],
+         tags=["#Charcoal", "#Briquettes", "#Hardwood"]),
+    dict(headlines=["Ready for a big braai?", "Stock up. Light up."],
+         subs=["Charcoal, briquettes & hardwood"],
+         captions=["Big braai coming up? 🔥 Stock up on charcoal, briquettes and hardwood so the fire "
+                   "keeps going from the first chop to the last braaibroodjie. {cta}"],
+         queries=["steak charcoal grill", "barbecue grill meat charcoal", "charcoal embers"],
+         tips=["Good fuel = steady heat from the first chop to the last braaibroodjie."],
+         tags=["#Charcoal", "#Briquettes", "#Hardwood"]),
     dict(headlines=["Charcoal or wood?", "The great braai debate"],
          subs=["Charcoal = fast & easy. Wood = flavour & vibe."],
          captions=["Charcoal or wood? 🤔🔥 Charcoal is quick and consistent. Wood gives you flavour, "
@@ -289,14 +287,14 @@ FUEL_TIPS = [
          queries=["charcoal grill", "burning wood fire", "charcoal embers"],
          tips=["Short on time? Charcoal. Want the full experience? Wood."],
          tags=["#Charcoal", "#BraaiWood", "#BraaiTips"]),
-    dict(headlines=["Know your braai wood", "Kameeldoring = king"],
-         subs=["Kameeldoring, rooikrans, sekelbos, black wattle"],
-         captions=["Know your wood! 🪵 Kameeldoring burns the hottest and longest. Rooikrans gives "
-                   "great coals. Sekelbos smells amazing. Black wattle is easy to light. "
-                   "Which is your favourite? {cta}"],
-         queries=["firewood logs", "wood fire", "stacked firewood"],
-         tips=["Kameeldoring: hottest. Rooikrans: long coals. Sekelbos: best aroma."],
-         tags=["#BraaiWood", "#Kameeldoring", "#Rooikrans"]),
+    dict(headlines=["Charcoal, briquettes or hardwood?", "Pick your fire"],
+         subs=["Each one has its moment"],
+         captions=["Which fuel for which braai? 🔥 Charcoal: quick and hot, great for steak and chops. "
+                   "Briquettes: steady heat that lasts, perfect for chicken and long braais. "
+                   "Hardwood: real flames, real flavour, the full braai vibe. What's your favourite? {cta}"],
+         queries=["charcoal briquettes grill", "glowing charcoal", "wood fire"],
+         tips=["Charcoal: quick & hot. Briquettes: long & steady. Hardwood: flavour & flames."],
+         tags=["#Charcoal", "#Briquettes", "#Hardwood"]),
     dict(headlines=["The 5-second hand test", "Are your coals ready?"],
          subs=["Hold your hand above the grid"],
          captions=["How do you know the coals are ready? ✋🔥 Hold your hand 10 cm above the grid. "

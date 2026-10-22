@@ -5,6 +5,9 @@ on:
     # Every day at 17:17 South African time (15:17 UTC). The agent itself
     # decides whether today is a posting day (every 2nd day, see config.yaml).
     - cron: "17 15 * * *"
+  push:
+    # Claude can start a run by updating this file (makes today's post even on an off day).
+    paths: ["run-now.txt"]
   workflow_dispatch:
     inputs:
       date:
@@ -48,7 +51,7 @@ jobs:
         run: |
           ARGS=""
           [ -n "${{ inputs.date }}" ] && ARGS="$ARGS --date ${{ inputs.date }}"
-          [ "${{ inputs.force }}" = "true" ] && ARGS="$ARGS --force"
+          if [ "${{ inputs.force }}" = "true" ] || [ "${{ github.event_name }}" = "push" ]; then ARGS="$ARGS --force"; fi
           python -m braai_agent generate $ARGS
 
       - name: Save images to the repo (Instagram needs a public link)
