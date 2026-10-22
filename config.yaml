@@ -1,7 +1,7 @@
 # ---- Best Braai social media agent settings ----
 brand:
   name: "Best Braai"
-  handle: "@bestbraai"                     # shown on every image - change to your real handle
+  handle: "@best_braai"                    # shown on every image
   cta: "Get premium Namibian hardwood & charcoal at Best Braai 🔥"
   story_cta: "Premium Namibian hardwood for your braai"
   hashtags: ["#BestBraai", "#NamibianHardwood"]
