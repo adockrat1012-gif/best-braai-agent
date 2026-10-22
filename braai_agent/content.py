@@ -1,7 +1,7 @@
 """Picks what to post on a given day and writes the words for it.
 
 Priority: special day (holiday) > weekend vibe (Fri/Sat/Sun) > month-end payday >
-seasonal topic / charcoal & wood tips.
+seasonal topic / charcoal & briquette tips.
 """
 import random
 from datetime import date
@@ -29,15 +29,15 @@ SPECIAL = {
         captions=["Happy New Year from all of us at {brand}! 🎆🔥 May the year be full of good coals, "
                   "good food and good people. Who's braaiing today?"],
         queries=["barbecue celebration", "grill summer party", "barbecue fire night"],
-        tips=["Start the year right: real wood, real fire, real friends."],
+        tips=["Start the year right: good coals, good food, good friends."],
         tags=["#HappyNewYear", "#NewYearBraai"]),
     "new_years_eve": dict(
         headlines=["New Year's Eve braai?", "End the year by the fire"],
         subs=["Stock up before the shops close"],
-        captions=["Last braai of the year tonight? 🎆 Make it a big one! Stock up on charcoal and wood "
+        captions=["Last braai of the year tonight? 🎆 Make it a big one! Stock up on charcoal and briquettes "
                   "early, because the shops will be packed. {cta}"],
         queries=["barbecue night fire", "grill party", "charcoal fire night"],
-        tips=["Get your fire going early. Big group = start with double the wood."],
+        tips=["Get your fire going early. Big group = start with double the charcoal."],
         tags=["#NewYearsEve", "#FestiveBraai"]),
     "christmas": dict(
         headlines=["Merry Christmas!", "A very braai Christmas"],
@@ -49,11 +49,11 @@ SPECIAL = {
         tags=["#MerryChristmas", "#ChristmasBraai"]),
     "christmas_eve": dict(
         headlines=["Christmas braai sorted?", "Ready for Christmas?"],
-        subs=["Charcoal, wood, firelighters: tick, tick, tick"],
+        subs=["Charcoal, briquettes, firelighters: tick, tick, tick"],
         captions=["Christmas is tomorrow! 🎄 Don't be the one who runs out of coals halfway through. "
                   "{cta}"],
-        queries=["charcoal bag", "barbecue preparation", "firewood stack"],
-        tips=["Checklist: charcoal, wood, firelighters, tongs, and a cold drink."],
+        queries=["charcoal bag", "barbecue preparation", "charcoal briquettes"],
+        tips=["Checklist: charcoal, briquettes, firelighters, tongs, and a cold drink."],
         tags=["#ChristmasEve", "#ChristmasBraai"]),
     "day_of_goodwill": dict(
         headlines=["Leftover braai day!", "Happy Day of Goodwill"],
@@ -77,7 +77,7 @@ SPECIAL = {
         captions=["Happy Freedom Day, South Africa! 🇿🇦🔥 Celebrate the freedom to gather, share and "
                   "braai together. Long weekend sorted?"],
         queries=["barbecue friends", "grill autumn", "barbecue fire"],
-        tips=["Long weekend tip: buy extra wood. You WILL braai twice."],
+        tips=["Long weekend tip: buy extra charcoal. You WILL braai twice."],
         tags=["#FreedomDay"]),
     "youth_day": dict(
         headlines=["Happy Youth Day!", "Youth Day braai"],
@@ -85,7 +85,7 @@ SPECIAL = {
         captions=["Happy Youth Day 🇿🇦 Remembering 1976, and celebrating the young people building "
                   "Mzansi. Winter braai today? Keep warm by the fire 🔥"],
         queries=["winter fire", "barbecue fire", "campfire"],
-        tips=["Winter braai? Rooikrans and kameeldoring give long-lasting, hot coals."],
+        tips=["Winter braai? Briquettes give long-lasting, steady heat."],
         tags=["#YouthDay", "#WinterBraai"]),
     "womens_day": dict(
         headlines=["Happy Women's Day!", "She rules the braai"],
@@ -135,11 +135,11 @@ SPECIAL = {
         tags=["#MothersDay"]),
     "fathers_day": dict(
         headlines=["Happy Father's Day!", "To the king of the braai"],
-        subs=["Spoil Dad with wood & coals"],
+        subs=["Spoil Dad with a proper fire"],
         captions=["Happy Father's Day to every dad who guards the fire like it's a national treasure 🔥👑 "
                   "Tag the braai legend in your life! {cta}"],
         queries=["man grilling", "barbecue steak", "barbecue fire"],
-        tips=["Gift idea: a box of kameeldoring and a good steak. He'll love it."],
+        tips=["Gift idea: a bag of charcoal and a good steak. He'll love it."],
         tags=["#FathersDay", "#BraaiMaster"]),
     "valentines": dict(
         headlines=["Love at first braai", "Happy Valentine's Day"],
@@ -156,9 +156,9 @@ WEEKDAY = {
         headlines=["Happy Friday! Ready to braai?", "Weekend loading... 🔥", "It's Friday. Light the fire!",
                    "Happy weekend, braai people!"],
         subs=["Are you ready for the braai?", "Weekend plans: fire, friends, food",
-              "Stock up on charcoal & wood today"],
+              "Stock up on charcoal & briquettes today"],
         captions=["Happy Friday, Mzansi! 🔥 The weekend is here. Are you ready to braai? "
-                  "Grab your charcoal and wood on the way home. {cta}",
+                  "Grab your charcoal and briquettes on the way home. {cta}",
                   "It's Friday! 🙌 Who's lighting the fire tonight? Drop a 🔥 in the comments. {cta}",
                   "Weekend loading... ⏳🔥 Coals, wors, chops, cold drinks. What's on your braai this weekend?"],
         queries=["barbecue grill meat", "grill fire evening", "barbecue party"],
@@ -230,8 +230,8 @@ SEASON = {
              subs=["South Africans braai all year round"],
              captions=["It's cold, but a South African never stops braaiing ❄️🔥 Gather round the fire, "
                        "the warmest place in the house is the braai. {cta}"],
-             queries=["winter campfire", "fire night", "fireplace wood fire"],
-             tips=["Winter tip: build a bigger fire. Cold air steals heat from your coals."],
+             queries=["winter campfire", "fire night", "glowing charcoal grill"],
+             tips=["Winter tip: use more coals. Cold air steals heat from the fire."],
              tags=["#WinterBraai", "#BraaiAllYear"]),
         dict(headlines=["Potjiekos weather!", "Winter = Potjie time"],
              subs=["Slow-cooked on the coals"],
@@ -240,13 +240,13 @@ SEASON = {
              queries=["cast iron pot fire", "stew cooking fire", "dutch oven campfire"],
              tips=["Potjie: low coals under the pot only, 3 hours, lid ON."],
              tags=["#Potjiekos", "#WinterBraai"]),
-        dict(headlines=["Rooikrans: winter's best friend", "Long-lasting winter coals"],
-             subs=["Burns hot, lasts long"],
-             captions=["Rooikrans gives beautiful, long-lasting coals: perfect for chilly winter nights "
-                       "around the fire 🪵🔥 {cta}"],
-             queries=["firewood stack", "wood fire coals", "burning logs"],
-             tips=["Rooikrans and kameeldoring = hot coals that last for hours."],
-             tags=["#Rooikrans", "#BraaiWood"]),
+        dict(headlines=["Briquettes: winter's best friend", "Long-lasting winter coals"],
+             subs=["Steady heat for cold nights"],
+             captions=["Briquettes give steady, long-lasting heat: perfect for chilly winter nights "
+                       "around the fire 🔥 {cta}"],
+             queries=["charcoal briquettes", "glowing charcoal", "winter fire night"],
+             tips=["Briquettes burn longer and steadier. Ideal for winter braais."],
+             tags=["#Briquettes", "#WinterBraai"]),
     ],
     "spring": [
         dict(headlines=["Braai season is back!", "Spring has sprung. Light the fire!"],
@@ -267,34 +267,34 @@ SEASON = {
 }
 
 FUEL_TIPS = [
-    dict(headlines=["Charcoal. Briquettes. Hardwood.", "Everything for your fire"],
-         subs=["Charcoal, briquettes & hardwood at Best Braai"],
-         captions=["Charcoal, briquettes or hardwood: whatever your fire needs, we've got you covered 🔥 {cta}"],
-         queries=["charcoal grill", "glowing charcoal", "burning wood fire"],
-         tips=["Charcoal, briquettes or hardwood. Pick your fire."],
-         tags=["#Charcoal", "#Briquettes", "#Hardwood"]),
+    dict(headlines=["Charcoal & Briquettes", "Everything for your fire"],
+         subs=["Charcoal & briquettes at Best Braai"],
+         captions=["Charcoal or briquettes: whatever your fire needs, we've got you covered 🔥 {cta}"],
+         queries=["charcoal grill", "glowing charcoal", "charcoal briquettes grill"],
+         tips=["Charcoal or briquettes. Pick your fire."],
+         tags=["#Charcoal", "#Briquettes"]),
     dict(headlines=["Ready for a big braai?", "Stock up. Light up."],
-         subs=["Charcoal, briquettes & hardwood"],
-         captions=["Big braai coming up? 🔥 Stock up on charcoal, briquettes and hardwood so the fire "
+         subs=["Charcoal & briquettes"],
+         captions=["Big braai coming up? 🔥 Stock up on charcoal and briquettes so the fire "
                    "keeps going from the first chop to the last braaibroodjie. {cta}"],
          queries=["steak charcoal grill", "barbecue grill meat charcoal", "charcoal embers"],
          tips=["Good fuel = steady heat from the first chop to the last braaibroodjie."],
-         tags=["#Charcoal", "#Briquettes", "#Hardwood"]),
-    dict(headlines=["Charcoal or wood?", "The great braai debate"],
-         subs=["Charcoal = fast & easy. Wood = flavour & vibe."],
-         captions=["Charcoal or wood? 🤔🔥 Charcoal is quick and consistent. Wood gives you flavour, "
-                   "the crackle, and the true braai vibe. Team charcoal or team wood? Comment below! {cta}"],
-         queries=["charcoal grill", "burning wood fire", "charcoal embers"],
-         tips=["Short on time? Charcoal. Want the full experience? Wood."],
-         tags=["#Charcoal", "#BraaiWood", "#BraaiTips"]),
-    dict(headlines=["Charcoal, briquettes or hardwood?", "Pick your fire"],
+         tags=["#Charcoal", "#Briquettes"]),
+    dict(headlines=["Charcoal or briquettes?", "The great braai debate"],
+         subs=["Charcoal = fast & hot. Briquettes = long & steady."],
+         captions=["Charcoal or briquettes? 🤔🔥 Charcoal lights fast and burns hot. Briquettes give "
+                   "steady, even heat that lasts. Team charcoal or team briquettes? Comment below! {cta}"],
+         queries=["charcoal grill", "charcoal briquettes", "charcoal embers"],
+         tips=["Short on time? Charcoal. Long braai? Briquettes."],
+         tags=["#Charcoal", "#Briquettes", "#BraaiTips"]),
+    dict(headlines=["Which fuel for which meat?", "Pick your fire"],
          subs=["Each one has its moment"],
          captions=["Which fuel for which braai? 🔥 Charcoal: quick and hot, great for steak and chops. "
-                   "Briquettes: steady heat that lasts, perfect for chicken and long braais. "
-                   "Hardwood: real flames, real flavour, the full braai vibe. What's your favourite? {cta}"],
-         queries=["charcoal briquettes grill", "glowing charcoal", "wood fire"],
-         tips=["Charcoal: quick & hot. Briquettes: long & steady. Hardwood: flavour & flames."],
-         tags=["#Charcoal", "#Briquettes", "#Hardwood"]),
+                   "Briquettes: steady heat that lasts, perfect for chicken, ribs and long braais. "
+                   "What's your favourite? {cta}"],
+         queries=["charcoal briquettes grill", "glowing charcoal", "grilled chicken charcoal"],
+         tips=["Steak & chops: charcoal. Chicken & ribs: briquettes."],
+         tags=["#Charcoal", "#Briquettes"]),
     dict(headlines=["The 5-second hand test", "Are your coals ready?"],
          subs=["Hold your hand above the grid"],
          captions=["How do you know the coals are ready? ✋🔥 Hold your hand 10 cm above the grid. "
@@ -313,9 +313,9 @@ FUEL_TIPS = [
     dict(headlines=["Skip the lighter fluid", "Light it like a pro"],
          subs=["Firelighters + kindling + patience"],
          captions=["Lighter fluid makes your meat taste like petrol ⛽🤢 Use firelighters, newspaper and "
-                   "dry kindling under your wood or charcoal for a clean fire. {cta}"],
+                   "dry kindling under your charcoal or briquettes for a clean fire. {cta}"],
          queries=["lighting fire kindling", "fire starting", "campfire flames"],
-         tips=["Firelighter at the bottom, kindling on top, charcoal or wood on top of that."],
+         tips=["Firelighter at the bottom, kindling on top, charcoal or briquettes on top of that."],
          tags=["#BraaiTips", "#Firelighters"]),
     dict(headlines=["Two-zone fire = braai master", "Hot side, cool side"],
          subs=["Sear on the hot side, finish on the cool side"],
@@ -339,12 +339,12 @@ FUEL_TIPS = [
          tips=["Butter on the OUTSIDE, low coals, turn often. Perfection."],
          tags=["#Braaibroodjie", "#BraaiTips"]),
     dict(headlines=["Stock up for the weekend", "Never run out of coals"],
-         subs=["Charcoal, wood, briquettes & firelighters"],
+         subs=["Charcoal, briquettes & firelighters"],
          captions=["Nothing worse than running out of coals mid-braai 😩 Stock up now and you're "
                    "ready for the weekend. {cta}"],
-         queries=["charcoal bag", "firewood stack", "charcoal pile"],
-         tips=["Rule of thumb: 1 bag of wood or charcoal per 4-6 people."],
-         tags=["#Charcoal", "#BraaiWood"]),
+         queries=["charcoal bag", "charcoal briquettes", "charcoal pile"],
+         tips=["Rule of thumb: 1 bag of charcoal or briquettes per 4-6 people."],
+         tags=["#Charcoal", "#Briquettes"]),
 ]
 
 SEASON_LINES = {
@@ -363,7 +363,7 @@ FOOD_SHOTS = {
             "boerewors braai", "kebab skewers charcoal grill"],
     "summer": ["grilled corn barbecue", "grilled kebabs summer", "grilled fish barbecue"],
     "autumn": ["grilled steak dark", "cast iron pot fire"],
-    "winter": ["cast iron pot campfire", "meat grilling wood fire night", "fire pit grill night"],
+    "winter": ["cast iron pot campfire", "meat grilling charcoal night", "fire pit grill night"],
     "spring": ["barbecue garden grill meat", "grilled chicken wings charcoal"],
 }
 
@@ -405,7 +405,7 @@ def pick_theme(d: date, every_n_days: int = 2):
         return f"weekday_{d.weekday()}", WEEKDAY[d.weekday()]
     if calendar_sa.is_payday_weekend(d):
         return "payday", PAYDAY
-    # Mid-week: alternate between seasonal topics and charcoal/wood tips.
+    # Mid-week: alternate between seasonal topics and charcoal/briquette tips.
     s = calendar_sa.season(d)
     if d.toordinal() // 2 % 2 == 0:
         i = rng.randrange(len(SEASON[s]))
