@@ -75,8 +75,10 @@ jobs:
           IG_USER_ID: ${{ secrets.IG_USER_ID }}
         run: |
           sleep 20  # give GitHub a moment to serve the new images
-          if [ "${{ inputs.dry_run }}" = "true" ] || [ -z "$META_ACCESS_TOKEN" ]; then
-            echo "Dry run (no META_ACCESS_TOKEN secret yet, or dry_run chosen)"
+          if [ -z "$META_ACCESS_TOKEN" ]; then
+            echo "No META_ACCESS_TOKEN secret: the post is saved in the repo and Claude publishes it via the connected accounts."
+          elif [ "${{ inputs.dry_run }}" = "true" ]; then
+            echo "Dry run chosen"
             python -m braai_agent publish "${{ steps.gen.outputs.post_dir }}" --dry-run
           else
             python -m braai_agent publish "${{ steps.gen.outputs.post_dir }}"
