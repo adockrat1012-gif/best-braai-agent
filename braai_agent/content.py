@@ -267,6 +267,21 @@ SEASON = {
 }
 
 FUEL_TIPS = [
+    dict(headlines=["Namibian hardwood. Pure heat.", "Born in the desert, made for braai"],
+         subs=["Best Braai Namibian hardwood charcoal"],
+         captions=["Why Namibian hardwood? 🇳🇦🔥 Sekelbos, kameeldoring and mopani grow slowly in the dry "
+                   "desert, so the wood is dense and dry. That means hotter coals that burn longer, "
+                   "with very little smoke. {cta}"],
+         queries=["lump charcoal", "glowing charcoal grill", "charcoal embers"],
+         tips=["Dense desert hardwood = hotter coals, longer burn, less smoke."],
+         tags=["#NamibianHardwood", "#LumpCharcoal", "#Charcoal"]),
+    dict(headlines=["One bag. One epic braai.", "15kg of pure braai power"],
+         subs=["Best Braai 15kg Namibian hardwood charcoal"],
+         captions=["Big braai this weekend? 🔥 One 15kg bag of Best Braai Namibian hardwood charcoal gives "
+                   "you steady, strong heat from the first chop to the last braaibroodjie. {cta}"],
+         queries=["steak charcoal grill", "lump charcoal", "barbecue grill meat charcoal"],
+         tips=["Lump hardwood charcoal lights faster than briquettes and burns clean."],
+         tags=["#BestBraai", "#NamibianHardwood", "#Charcoal"]),
     dict(headlines=["Charcoal or wood?", "The great braai debate"],
          subs=["Charcoal = fast & easy. Wood = flavour & vibe."],
          captions=["Charcoal or wood? 🤔🔥 Charcoal is quick and consistent. Wood gives you flavour, "
@@ -341,6 +356,19 @@ SEASON_LINES = {
     "spring": "🌸 Spring braai season is back",
 }
 
+# Close-up braai photos: meat on the grid over real coals. One of these is always the
+# feed photo, so every post shows food on the fire.
+FOOD_SHOTS = {
+    "all": ["steak on charcoal grill", "meat grilling over charcoal", "lamb chops on grill",
+            "sausages on charcoal grill", "chicken on barbecue grill charcoal", "t-bone steak grill",
+            "grilled meat flames", "barbecue grill embers meat", "ribs on charcoal grill",
+            "boerewors braai", "kebab skewers charcoal grill"],
+    "summer": ["grilled corn barbecue", "grilled kebabs summer", "grilled fish barbecue"],
+    "autumn": ["grilled steak dark", "cast iron pot fire"],
+    "winter": ["cast iron pot campfire", "meat grilling wood fire night", "fire pit grill night"],
+    "spring": ["barbecue garden grill meat", "grilled chicken wings charcoal"],
+}
+
 BASE_TAGS = ["#braai", "#SouthAfrica", "#Mzansi", "#bbq", "#barbecue", "#ShisaNyama",
              "#LekkerBraai", "#BraaiLife"]
 
@@ -356,6 +384,16 @@ def _tag(theme_id, season):
     if theme_id.startswith("season_"):
         return f"{season} braai season"
     return "Braai day"
+
+
+def _queries(theme, season, rng):
+    """Food-on-the-coals shot first (feed photo), then alternate theme and food searches."""
+    food = FOOD_SHOTS["all"] + FOOD_SHOTS[season] * 2
+    picks = rng.sample(food, 3)
+    out = []
+    for i in range(3):
+        out += [picks[i], theme["queries"][i % len(theme["queries"])]]
+    return list(dict.fromkeys(out))
 
 
 def pick_theme(d: date, every_n_days: int = 2):
@@ -397,7 +435,7 @@ def build_post(d: date, cfg: dict) -> dict:
         "theme": theme_id,
         "season": s,
         "tag": _tag(theme_id, s),
-        "queries": t["queries"],
+        "queries": _queries(t, s, rng),
         "feed": {"headline": headline, "sub": rng.choice(t["subs"])},
         "story": {"headline": headline, "sub": fill(story_cta)},
         "reel": {

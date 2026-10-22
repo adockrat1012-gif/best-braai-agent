@@ -15,12 +15,15 @@ You never upload anything. The agent picks a free braai photo, adds your brandin
 * **Weekends:** Friday *"Happy weekend, ready to braai?"*, Saturday *"Saturday = Braai Day"*, Sunday *"Sunday Funday = Braai Day!"*
 * **SA public holidays:** Heritage Day / National Braai Day, Freedom Day, Youth Day, Women's Day, Easter, Christmas, New Year, Mother's & Father's Day and more. It posts on the day, or the day before when the holiday falls between posting days.
 * **SA seasons:** summer (sosaties, pool braais), autumn (cool evenings, potjie), winter (potjiekos, rooikrans, braai all year), spring (braai season is back).
+* **Your product:** Best Braai Namibian hardwood charcoal (why desert hardwood burns hotter and longer, the 15kg bag).
 * **Charcoal & wood:** charcoal vs wood, kameeldoring/rooikrans/sekelbos, the hand test, white coals, no lighter fluid, two-zone fire.
 * **Month-end payday weekends.**
 
 See the plan for the next 2 months: `python -m braai_agent plan --days 60`
 
 ## Free photos
+
+Every feed post shows real braai food on the coals (steak on a charcoal grill, chops, boerewors, sosaties, potjie in winter). Stories and reels add fire, charcoal and wood shots.
 
 Searched in this order, never reusing a photo:
 1. **Pexels** (free API key, commercial use OK, no credit needed)
