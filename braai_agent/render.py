@@ -24,6 +24,27 @@ _BODY_FONTS = ["/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf",
 _EMOJI = re.compile("[\U0001F000-\U0001FFFF☀-➿️‍]+")
 
 
+_LOGO = ROOT / "assets/logo.png"
+
+
+def _logo(height):
+    if not _LOGO.exists():
+        return None
+    logo = Image.open(_LOGO).convert("RGBA")
+    return logo.resize((int(logo.width * height / logo.height), height), Image.LANCZOS)
+
+
+def _paste_logo(img, logo, x, y):
+    """Logo with a soft dark halo so it stands out on busy photos."""
+    halo = Image.new("RGBA", img.size, (0, 0, 0, 0))
+    alpha = logo.getchannel("A").point(lambda a: min(255, a * 2))
+    halo.paste((0, 0, 0, 170), (x, y), alpha)
+    halo = halo.filter(ImageFilter.GaussianBlur(12))
+    img = Image.alpha_composite(img.convert("RGBA"), halo)
+    img.alpha_composite(logo, (x, y))
+    return img.convert("RGB")
+
+
 def _font(candidates, size):
     for p in candidates:
         if Path(p).exists():
@@ -79,8 +100,12 @@ def _shade(img):
     return Image.composite(dark, img, mask)
 
 
-def compose(photo, size, headline, sub, brand, handle, top_ratio=0.12, safe_bottom=0.0):
-    """One branded slide. Headline near top, brand bar at the bottom."""
+def compose(photo, size, headline, sub, brand, handle, top_ratio=0.12, safe_bottom=0.0,
+            tag=None, big_logo=False):
+    """One branded slide. Headline near top, logo/brand at the bottom.
+
+    big_logo=True makes an end card: large centred logo with the sub line under it.
+    """
     img = ImageOps.fit(photo, size, Image.LANCZOS, centering=(0.5, 0.5))
     img = _shade(img)
     d = ImageDraw.Draw(img)
@@ -91,9 +116,27 @@ def compose(photo, size, headline, sub, brand, handle, top_ratio=0.12, safe_bott
     headline, sub = _clean(headline), _clean(sub)
     y = int(h * top_ratio)
 
+    if big_logo and _LOGO.exists():
+        logo = _logo(int(w * 0.62 * 1059 / 1173))
+        ly = int(h * 0.42) - logo.height // 2
+        img = _paste_logo(img, logo, (w - logo.width) // 2, ly)
+        d = ImageDraw.Draw(img)
+        y = ly + logo.height + 60
+        for text, f, col in ((sub, _font(_BODY_FONTS, 48), GOLD), (handle, _font(_BODY_FONTS, 40), WHITE)):
+            if not text:
+                continue
+            for line in _wrap(d, text, f, max_w):
+                lw = d.textlength(line, font=f)
+                d.text(((w - lw) / 2 + 2, y + 2), line, font=f, fill=(0, 0, 0))
+                d.text(((w - lw) / 2, y), line, font=f, fill=col)
+                y += int(f.size * 1.35)
+            y += 20
+        d.rectangle([0, h - 14, w, h], fill=EMBER)
+        return img
+
     # Small ember tag line above the headline
     tag_font = _font(_BODY_FONTS, 30)
-    tag = brand.upper()
+    tag = _clean(tag or brand).upper()
     tw = d.textlength(tag, font=tag_font)
     d.rounded_rectangle([margin, y, margin + tw + 40, y + 52], radius=26, fill=EMBER)
     d.text((margin + 20, y + 9), tag, font=tag_font, fill=WHITE)
@@ -121,13 +164,20 @@ def compose(photo, size, headline, sub, brand, handle, top_ratio=0.12, safe_bott
             d.text((margin, y), line, font=sf, fill=GOLD)
             y += int(sf.size * 1.3)
 
-    # Brand bar
-    bar_y = int(h * (1 - safe_bottom)) - 150
-    bf = _font(_HEADLINE_FONTS, 64)
-    d.text((margin, bar_y), brand.upper(), font=bf, fill=WHITE)
-    if handle:
-        hf2 = _font(_BODY_FONTS, 34)
-        d.text((margin, bar_y + 82), handle, font=hf2, fill=GOLD)
+    # Logo (or brand name) at the bottom
+    bottom = int(h * (1 - safe_bottom)) - 50
+    hf2 = _font(_BODY_FONTS, 34)
+    logo = _logo(230 if h > 1400 else 200)
+    if logo:
+        img = _paste_logo(img, logo, margin - 10, bottom - logo.height)
+        d = ImageDraw.Draw(img)
+        if handle:
+            d.text((margin + logo.width + 20, bottom - 50), handle, font=hf2, fill=GOLD)
+    else:
+        bf = _font(_HEADLINE_FONTS, 64)
+        d.text((margin, bottom - 100), brand.upper(), font=bf, fill=WHITE)
+        if handle:
+            d.text((margin, bottom - 18), handle, font=hf2, fill=GOLD)
     d.rectangle([0, h - 14, w, h], fill=EMBER)
     return img
 
@@ -138,19 +188,21 @@ def render_post(post, photos, cfg, out_dir: Path):
     brand = cfg["brand"]["name"]
     handle = cfg["brand"].get("handle", "")
 
-    feed = compose(photos[0], FEED_SIZE, post["feed"]["headline"], post["feed"]["sub"], brand, handle)
+    tag = post.get("tag")
+    feed = compose(photos[0], FEED_SIZE, post["feed"]["headline"], post["feed"]["sub"], brand, handle, tag=tag)
     feed.save(out_dir / "feed.jpg", quality=92)
 
     # Stories: keep text clear of the top profile bar and bottom reply box.
     story = compose(photos[1 % len(photos)], STORY_SIZE, post["story"]["headline"], post["story"]["sub"],
-                    brand, handle, top_ratio=0.16, safe_bottom=0.1)
+                    brand, handle, top_ratio=0.16, safe_bottom=0.1, tag=tag)
     story.save(out_dir / "story.jpg", quality=92)
 
     slide_paths = []
     for i, s in enumerate(post["reel"]["slides"]):
         # Reels: Instagram puts caption & buttons on the bottom ~20%.
+        last = i == len(post["reel"]["slides"]) - 1
         slide = compose(photos[(i + 2) % len(photos)], STORY_SIZE, s["headline"], s["sub"], brand, handle,
-                        top_ratio=0.18, safe_bottom=0.2)
+                        top_ratio=0.18, safe_bottom=0.2, tag=tag, big_logo=last)
         p = out_dir / f"reel_slide_{i + 1}.jpg"
         slide.save(p, quality=92)
         slide_paths.append(p)

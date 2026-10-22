@@ -345,6 +345,19 @@ BASE_TAGS = ["#braai", "#SouthAfrica", "#Mzansi", "#bbq", "#barbecue", "#ShisaNy
              "#LekkerBraai", "#BraaiLife"]
 
 
+def _tag(theme_id, season):
+    """Small label above the headline."""
+    if theme_id.startswith("weekday_"):
+        return {"4": "Weekend braai", "5": "Saturday braai", "6": "Sunday braai"}[theme_id[-1]]
+    if theme_id.startswith("fuel_tip"):
+        return "Braai tip"
+    if theme_id == "payday":
+        return "Payday weekend"
+    if theme_id.startswith("season_"):
+        return f"{season} braai season"
+    return "Braai day"
+
+
 def pick_theme(d: date, every_n_days: int = 2):
     """Returns (theme_id, theme_dict)."""
     rng = random.Random(d.toordinal())
@@ -383,6 +396,7 @@ def build_post(d: date, cfg: dict) -> dict:
         "date": d.isoformat(),
         "theme": theme_id,
         "season": s,
+        "tag": _tag(theme_id, s),
         "queries": t["queries"],
         "feed": {"headline": headline, "sub": rng.choice(t["subs"])},
         "story": {"headline": headline, "sub": fill(story_cta)},

@@ -70,6 +70,7 @@ After that it runs by itself every day at **17:17 SA time** and posts every seco
 
 ## Optional extras
 * **Music on reels:** drop royalty-free `.mp3` files into the `music/` folder (e.g. from pixabay.com/music); one is chosen at random. Without music, reels have a silent track.
+* **Logo:** `assets/logo.png` (made from your logo.svg) goes on every image, and each reel ends on a large logo card. Replace the file to change it.
 * **Your own font:** the workflow downloads the free *Anton* poster font automatically.
 * **Change frequency:** `every_n_days` in `config.yaml`.
 * **Only Instagram / only Facebook:** set `platforms` in `config.yaml`.
