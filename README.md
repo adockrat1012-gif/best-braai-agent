@@ -51,6 +51,12 @@ pexels.com/api → sign up → copy your API key.
    Copy your Page's **`access_token`** (this Page token does not expire) and its **`id`** (your Page id).
 6. Run `<your-page-id>?fields=instagram_business_account` and copy the **`id`** it returns (your Instagram id).
 
+**Easier option for Best Braai (you already have a Meta Business portfolio):**
+1. Open business.facebook.com/settings (business id `531195883973157`) → **Users → System users → Add** (role: Admin).
+2. **Assign assets** → your Best Braai Page and Instagram account → full control.
+3. **Generate new token** → choose your app → tick the permissions listed above → **Never expires**. Copy it: this is your `META_ACCESS_TOKEN`.
+4. Your Instagram id: Graph API Explorer → `1019998334781471?fields=instagram_business_account` → copy the `id`.
+
 ### 4. Add the secrets to GitHub
 Repository → **Settings → Secrets and variables → Actions → New repository secret**:
 
@@ -58,7 +64,7 @@ Repository → **Settings → Secrets and variables → Actions → New reposito
 |---|---|
 | `PEXELS_API_KEY` | from step 2 |
 | `META_ACCESS_TOKEN` | Page access token from step 3.5 |
-| `FB_PAGE_ID` | Page id from step 3.5 |
+| `FB_PAGE_ID` | already set in `config.yaml` (1019998334781471), so not needed |
 | `IG_USER_ID` | Instagram id from step 3.6 |
 | `PIXABAY_API_KEY` | optional |
 

@@ -90,7 +90,7 @@ def cmd_publish(args, cfg):
         post_dir = ROOT / post_dir
     caption = (post_dir / "caption.txt").read_text()
     results = publish.publish(post_dir, media_base_url(post_dir, cfg), caption,
-                              cfg.get("platforms", {}), dry_run=args.dry_run)
+                              cfg.get("platforms", {}), dry_run=args.dry_run, ids=cfg.get("meta"))
     if args.dry_run:
         return
     (post_dir / "published.json").write_text(json.dumps(results, indent=2))

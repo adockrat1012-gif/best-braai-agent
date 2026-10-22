@@ -10,6 +10,11 @@ schedule:
   start_date: 2026-10-23    # first posting day; then every N days after that
   every_n_days: 2
 
+meta:
+  fb_page_id: "1019998334781471"   # Best Braai Facebook Page (from Meta Business Suite)
+  business_id: "531195883973157"   # Meta Business portfolio (for reference)
+  ig_user_id: ""                   # filled in during setup (or set the IG_USER_ID secret)
+
 platforms:
   instagram: true
   facebook: true

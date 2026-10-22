@@ -17,10 +17,11 @@ GRAPH = f"https://graph.facebook.com/{API}"
 
 
 class Meta:
-    def __init__(self):
+    def __init__(self, ids=None):
+        ids = ids or {}
         self.token = os.environ["META_ACCESS_TOKEN"]
-        self.page = os.getenv("FB_PAGE_ID", "").strip()
-        self.ig = os.getenv("IG_USER_ID", "").strip()
+        self.page = (os.getenv("FB_PAGE_ID") or str(ids.get("fb_page_id") or "")).strip()
+        self.ig = (os.getenv("IG_USER_ID") or str(ids.get("ig_user_id") or "")).strip()
 
     def _call(self, method, path, **params):
         url = path if path.startswith("http") else f"{GRAPH}/{path}"
@@ -84,7 +85,7 @@ class Meta:
         return vid
 
 
-def publish(post_dir: Path, base_url: str, caption: str, platforms: dict, dry_run=False):
+def publish(post_dir: Path, base_url: str, caption: str, platforms: dict, dry_run=False, ids=None):
     feed_url, story_url = f"{base_url}/feed.jpg", f"{base_url}/story.jpg"
     reel = post_dir / "reel.mp4"
     steps = []
@@ -103,7 +104,7 @@ def publish(post_dir: Path, base_url: str, caption: str, platforms: dict, dry_ru
         print(f"  feed image: {feed_url}\n  story image: {story_url}")
         return {name: "dry-run" for name, _ in steps}
 
-    meta = Meta()
+    meta = Meta(ids)
     results = {}
     for name, fn in steps:
         if name.startswith("instagram") and not meta.ig or name.startswith("facebook") and not meta.page:
