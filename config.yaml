@@ -1,0 +1,19 @@
+# ---- Best Braai social media agent settings ----
+brand:
+  name: "Best Braai"
+  handle: "@bestbraai"                     # shown on every image - change to your real handle
+  cta: "Visit Best Braai for charcoal, braai wood & everything you need 🔥"
+  story_cta: "Charcoal & braai wood at Best Braai"
+  hashtags: ["#BestBraai"]
+
+schedule:
+  start_date: 2026-10-23    # first posting day; then every N days after that
+  every_n_days: 2
+
+platforms:
+  instagram: true
+  facebook: true
+
+# Optional: where the images are publicly reachable. Leave empty when running on
+# GitHub Actions with a public repo (raw.githubusercontent.com is used automatically).
+media_base_url: ""
