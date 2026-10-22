@@ -37,8 +37,8 @@ Searched in this order, never reusing a photo:
 Create a free account at github.com → **New repository** → name it `best-braai-agent` → **Public** → upload these files.
 (It must be public: Instagram downloads the images from GitHub.)
 
-### 2. Get a free Pexels key (recommended)
-pexels.com/api → sign up → copy your API key.
+### 2. Get a free Pixabay key (recommended)
+pixabay.com → sign up → open pixabay.com/api/docs → your key is shown under "Search Images → Parameters". (Pexels has paused new keys; if you already have one, add it as `PEXELS_API_KEY`.)
 
 ### 3. Connect Instagram & Facebook (Meta)
 1. Your Instagram must be a **Business or Creator** account, **linked to your Facebook Page**
@@ -62,11 +62,11 @@ Repository → **Settings → Secrets and variables → Actions → New reposito
 
 | Name | Value |
 |---|---|
-| `PEXELS_API_KEY` | from step 2 |
+| `PIXABAY_API_KEY` | from step 2 |
 | `META_ACCESS_TOKEN` | Page access token from step 3.5 |
 | `FB_PAGE_ID` | already set in `config.yaml` (1019998334781471), so not needed |
 | `IG_USER_ID` | Instagram id from step 3.6 |
-| `PIXABAY_API_KEY` | optional |
+| `PEXELS_API_KEY` | optional (only if you already have one) |
 
 ### 5. Edit `config.yaml`
 Set your real Instagram handle, call-to-action text and the first posting date.

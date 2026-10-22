@@ -199,13 +199,14 @@ jobs:
 </section>
 
 <section class="step" data-step="3">
-  <div class="step-head"><span class="num">3</span><h2>Get a free Pexels photo key</h2><span class="time">3 min</span></div>
+  <div class="step-head"><span class="num">3</span><h2>Get a free Pixabay photo key</h2><span class="time">3 min</span></div>
   <ol>
-    <li>Sign up or log in at Pexels.</li>
-    <li>Open the API page and click <b>Your API Key</b>. Fill in the short form (use: "Social media posts for my braai business").</li>
+    <li>Sign up (free) or log in at Pixabay.</li>
+    <li>Open the API docs page while logged in. Scroll to <b>Search Images → Parameters</b>: the <b>key</b> row shows your API key in green.</li>
     <li>Copy the key and keep it for step 8.</li>
   </ol>
-  <div class="actions"><a class="btn" href="https://www.pexels.com/api/" target="_blank" rel="noopener">Open Pexels API ↗</a></div>
+  <p class="note">Pexels has paused new keys, so Pixabay replaces it. No key at all still works: the agent then uses Openverse.</p>
+  <div class="actions"><a class="btn" href="https://pixabay.com/accounts/register/" target="_blank" rel="noopener">Sign up on Pixabay ↗</a><a class="btn alt" href="https://pixabay.com/api/docs/#api_search_images" target="_blank" rel="noopener">Open API docs (your key) ↗</a></div>
   <label class="check"><input type="checkbox" id="done-3">Done</label>
 </section>
 
@@ -262,7 +263,7 @@ jobs:
     <tr><th>Name</th><th>Value</th><th></th></tr>
     <tr><td><code>META_ACCESS_TOKEN</code></td><td>token from step 6</td><td><button data-copy="META_ACCESS_TOKEN">Copy name</button></td></tr>
     <tr><td><code>IG_USER_ID</code></td><td>number from step 7</td><td><button data-copy="IG_USER_ID">Copy name</button></td></tr>
-    <tr><td><code>PEXELS_API_KEY</code></td><td>key from step 3</td><td><button data-copy="PEXELS_API_KEY">Copy name</button></td></tr>
+    <tr><td><code>PIXABAY_API_KEY</code></td><td>key from step 3</td><td><button data-copy="PIXABAY_API_KEY">Copy name</button></td></tr>
   </table></div>
   <p class="note">Your Facebook Page ID (1019998334781471) is already built into the agent, so it doesn't need a secret.</p>
   <div class="actions"><a class="btn repo-link" data-path="/settings/secrets/actions/new" href="https://github.com/new" target="_blank" rel="noopener">Open GitHub secrets ↗</a></div>
