@@ -2,9 +2,9 @@ name: Braai social posts
 
 on:
   schedule:
-    # Every day at 09:30 South African time (07:30 UTC). The agent itself
+    # Every day at 10:30 South African time (08:30 UTC). The agent itself
     # decides whether today is a posting day (every 2nd day, see config.yaml).
-    - cron: "30 7 * * *"
+    - cron: "30 8 * * *"
   push:
     # Claude can start a run by updating this file (makes today's post even on an off day).
     paths: ["run-now.txt"]
