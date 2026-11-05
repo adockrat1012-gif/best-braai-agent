@@ -1,0 +1,10 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(cd:*)", "Bash(git:*)", "Bash(python3:*)", "Bash(cat:*)",
+      "Bash(sed:*)", "Bash(date:*)", "Bash(ls:*)", "Bash(sleep:*)",
+      "mcp__composio_for_u__COMPOSIO_SEARCH_TOOLS",
+      "mcp__composio_for_u__COMPOSIO_MULTI_EXECUTE_TOOL"
+    ]
+  }
+}
