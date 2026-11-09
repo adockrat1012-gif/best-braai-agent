@@ -7,7 +7,7 @@ brand:
   hashtags: ["#BestBraai", "#Charcoal", "#Briquettes"]
 
 schedule:
-  start_date: 2026-10-22    # first posting day; then every N days after that
+  start_date: 2026-11-08    # first posting day; then every N days after that
   every_n_days: 2
 
 meta:
